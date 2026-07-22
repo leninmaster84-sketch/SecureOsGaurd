@@ -1,325 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SecureOSGuard – Download</title>
-  <meta name="description" content="Download SecureOSGuard – Advanced OS Security Tool to protect your system." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0a0a0f;
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    /* Animated background */
-    .bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(99,102,241,0.35) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 40% at 80% 90%, rgba(16,185,129,0.2) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 50% at 10% 80%, rgba(139,92,246,0.15) 0%, transparent 60%);
-    }
-
-    .grid-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background-image:
-        linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
-
-    /* Floating orbs */
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.15;
-      animation: float 8s ease-in-out infinite;
-      z-index: 0;
-    }
-    .orb1 { width: 400px; height: 400px; background: #6366f1; top: -100px; left: -100px; animation-delay: 0s; }
-    .orb2 { width: 300px; height: 300px; background: #10b981; bottom: -80px; right: -80px; animation-delay: 3s; }
-    .orb3 { width: 200px; height: 200px; background: #8b5cf6; top: 50%; left: 60%; animation-delay: 5s; }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-30px) scale(1.05); }
-    }
-
-    /* Card */
-    .card {
-      position: relative;
-      z-index: 10;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 28px;
-      padding: 56px 48px;
-      max-width: 520px;
-      width: 90%;
-      text-align: center;
-      backdrop-filter: blur(24px);
-      box-shadow: 0 32px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
-      animation: slideUp 0.7s cubic-bezier(0.16,1,0.3,1) both;
-    }
-
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Shield Icon */
-    .icon-wrap {
-      width: 90px;
-      height: 90px;
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      border-radius: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 28px;
-      box-shadow: 0 16px 40px rgba(99,102,241,0.4);
-      animation: pulse 3s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 16px 40px rgba(99,102,241,0.4); }
-      50% { box-shadow: 0 16px 60px rgba(99,102,241,0.7); }
-    }
-
-    .icon-wrap svg { width: 48px; height: 48px; }
-
-    /* Badge */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(16,185,129,0.15);
-      border: 1px solid rgba(16,185,129,0.3);
-      color: #10b981;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 5px 14px;
-      border-radius: 100px;
-      margin-bottom: 20px;
-      letter-spacing: 0.5px;
-    }
-
-    .badge::before {
-      content: '';
-      width: 7px; height: 7px;
-      background: #10b981;
-      border-radius: 50%;
-      animation: blink 1.5s ease-in-out infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    h1 {
-      font-size: 2.4rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.15;
-      margin-bottom: 12px;
-    }
-
-    .subtitle {
-      color: rgba(255,255,255,0.5);
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 36px;
-    }
-
-    /* Features */
-    .features {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 36px;
-    }
-
-    .feature {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 8px 16px;
-      border-radius: 100px;
-      font-size: 13px;
-      color: rgba(255,255,255,0.7);
-    }
-
-    .feature span { font-size: 16px; }
-
-    /* Download Button */
-    .btn-download {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      width: 100%;
-      padding: 18px 32px;
-      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-      color: #fff;
-      font-size: 1.05rem;
-      font-weight: 700;
-      border: none;
-      border-radius: 16px;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 8px 32px rgba(99,102,241,0.45);
-      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
-      position: relative;
-      overflow: hidden;
-      letter-spacing: 0.3px;
-    }
-
-    .btn-download::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .btn-download:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 16px 48px rgba(99,102,241,0.6);
-    }
-
-    .btn-download:hover::before { opacity: 1; }
-    .btn-download:active { transform: translateY(-1px) scale(0.99); }
-
-    .btn-download svg { width: 22px; height: 22px; }
-
-    /* File info */
-    .file-info {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .info-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12.5px;
-      color: rgba(255,255,255,0.35);
-    }
-
-    .info-item svg { width: 14px; height: 14px; }
-
-    .divider {
-      width: 1px;
-      height: 16px;
-      background: rgba(255,255,255,0.15);
-    }
-
-    /* Footer */
-    footer {
-      position: relative;
-      z-index: 10;
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(255,255,255,0.2);
-      font-size: 12px;
-      text-align: center;
-      white-space: nowrap;
-    }
-  </style>
+  <title>SecureOSGuard – Advanced OS Security Tool</title>
+  <meta name="description" content="SecureOSGuard – Final Year Project by Lenin & Sanjay. Advanced OS Security Tool for Windows."/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <div class="bg"></div>
-  <div class="grid-overlay"></div>
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-  <div class="orb orb3"></div>
+  <!-- Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
 
-  <div class="card">
-    <!-- Icon -->
-    <div class="icon-wrap">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L3 6.5V12C3 16.42 7 20.64 12 22C17 20.64 21 16.42 21 12V6.5L12 2Z" fill="white" opacity="0.9"/>
-        <path d="M9 12L11 14L15 10" stroke="#6366f1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">🛡️</div>
+        <span>SecureOS<span class="logo-accent">Guard</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="versions.html" class="nav-link">Versions</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+      <a href="https://github.com/leninmaster84-sketch/SecureOsGaurd" target="_blank" class="nav-github">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
     </div>
+  </nav>
 
-    <div class="badge">Latest Version</div>
-
-    <h1>SecureOSGuard</h1>
-    <p class="subtitle">
-      Advanced OS Security Tool — உன் System-ஐ Protect பண்ண<br/>
-      Professional Grade Protection.
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-badge">🎓 Final Year Project — 2026</div>
+    <div class="hero-icon">
+      <div class="shield-outer">
+        <div class="shield-inner">🛡️</div>
+      </div>
+    </div>
+    <h1 class="hero-title">Secure<span class="gradient-text">OS</span>Guard</h1>
+    <p class="hero-subtitle">Advanced Operating System Security Tool</p>
+    <p class="hero-desc">
+      Protect your Windows system with real-time threat detection,<br/>
+      intelligent monitoring & automated security response.
     </p>
 
-    <!-- Features -->
-    <div class="features">
-      <div class="feature"><span>🛡️</span> Real-Time Protection</div>
-      <div class="feature"><span>⚡</span> Lightweight</div>
-      <div class="feature"><span>🔒</span> Secure</div>
-    </div>
-
-    <!-- Download Button -->
-    <a
-      id="download-btn"
-      class="btn-download"
-      href="https://github.com/leninmaster84-sketch/SecureOsGaurd/raw/master/SecureOSGuard_Installer.exe"
-      download
-    >
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-        <polyline points="7 10 12 15 17 10"/>
-        <line x1="12" y1="15" x2="12" y2="3"/>
-      </svg>
-      Download Now — Free
-    </a>
-
-    <!-- File Info -->
-    <div class="file-info">
-      <div class="info-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
-        SecureOSGuard_Installer.exe
+    <!-- Download Box -->
+    <div class="download-box">
+      <div class="download-meta">
+        <div class="version-chip">
+          <span class="dot"></span>
+          Latest: <strong>v1.0.0</strong>
+        </div>
+        <div class="file-meta">
+          <span>📦 SecureOSGuard_Installer.exe</span>
+          <span>•</span>
+          <span>74 MB</span>
+          <span>•</span>
+          <span>Windows 10/11</span>
+        </div>
       </div>
-      <div class="divider"></div>
-      <div class="info-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        ~74 MB
-      </div>
-      <div class="divider"></div>
-      <div class="info-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
-        Windows
+
+      <a id="download-btn"
+         href="https://github.com/leninmaster84-sketch/SecureOsGaurd/raw/master/SecureOSGuard_Installer.exe"
+         class="btn-primary"
+         onclick="countDownload()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download Free — v1.0.0
+      </a>
+
+      <div class="download-counter">
+        <span class="counter-icon">📥</span>
+        <span id="dl-count" class="counter-num">—</span>
+        <span class="counter-label">Total Downloads</span>
       </div>
     </div>
-  </div>
 
-  <footer>© 2026 SecureOSGuard. All rights reserved.</footer>
+    <a href="versions.html" class="btn-secondary">📋 View All Versions</a>
+  </section>
 
+  <!-- Features -->
+  <section class="features-section">
+    <div class="section-label">Core Features</div>
+    <h2 class="section-title">Why SecureOSGuard?</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Real-Time Monitoring</h3>
+        <p>Continuously scans system processes and detects suspicious activity instantly.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Threat Detection</h3>
+        <p>AI-powered threat analysis identifies and neutralizes threats before they cause damage.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Registry Protection</h3>
+        <p>Guards Windows registry from unauthorized modifications and malware attacks.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Security Reports</h3>
+        <p>Detailed logs and reports of all security events and system health status.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>Firewall Integration</h3>
+        <p>Seamlessly integrates with Windows Firewall for enhanced network protection.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>Lightweight</h3>
+        <p>Minimal system resource usage while maintaining maximum security coverage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Preview -->
+  <section class="team-preview">
+    <p class="team-text">Developed by</p>
+    <div class="team-names">
+      <span class="team-chip">👨‍💻 Lenin</span>
+      <span class="team-amp">&</span>
+      <span class="team-chip">👨‍💻 Sanjay</span>
+    </div>
+    <a href="about.html" class="link-subtle">Learn more about the project →</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">🛡️ SecureOSGuard</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="versions.html">Versions</a>
+        <a href="about.html">About</a>
+        <a href="https://github.com/leninmaster84-sketch/SecureOsGaurd" target="_blank">GitHub</a>
+      </div>
+      <p class="footer-copy">© 2026 Lenin & Sanjay — Final Year Project. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>

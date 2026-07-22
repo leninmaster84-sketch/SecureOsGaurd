@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Versions – SecureOSGuard</title>
+  <meta name="description" content="All versions and changelogs for SecureOSGuard by Lenin & Sanjay."/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">🛡️</div>
+        <span>SecureOS<span class="logo-accent">Guard</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="versions.html" class="nav-link active">Versions</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+      <a href="https://github.com/leninmaster84-sketch/SecureOsGaurd" target="_blank" class="nav-github">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="hero-badge">📋 Release History</div>
+    <h1 class="hero-title" style="font-size:2.6rem;">All <span class="gradient-text">Versions</span></h1>
+    <p class="hero-desc">Complete changelog and download links for every release.</p>
+  </div>
+
+  <!-- Versions Timeline -->
+  <section class="versions-section">
+    <div class="versions-container">
+
+      <!-- ===================== ADD NEW VERSIONS ABOVE THIS LINE ===================== -->
+
+      <!-- VERSION 1.0.0 -->
+      <div class="version-card latest">
+        <div class="version-header">
+          <div class="version-left">
+            <span class="version-badge latest-badge">🟢 Latest</span>
+            <h2 class="version-num">v1.0.0</h2>
+            <span class="version-date">📅 July 2026</span>
+          </div>
+          <a href="https://github.com/leninmaster84-sketch/SecureOsGaurd/raw/master/SecureOSGuard_Installer.exe"
+             class="btn-primary btn-small"
+             onclick="countDownload()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download
+          </a>
+        </div>
+        <div class="version-title-full">🚀 Initial Release — SecureOSGuard</div>
+        <div class="changelog">
+          <div class="changelog-section">
+            <div class="changelog-label new">✨ New Features</div>
+            <ul>
+              <li>Real-time OS process monitoring</li>
+              <li>Threat detection and alerting system</li>
+              <li>Windows Registry protection module</li>
+              <li>Security event logging & reports</li>
+              <li>Firewall integration</li>
+              <li>Clean installer with easy setup wizard</li>
+            </ul>
+          </div>
+        </div>
+        <div class="version-footer">
+          <span>📦 74 MB</span>
+          <span>•</span>
+          <span>🖥️ Windows 10/11</span>
+          <span>•</span>
+          <span>SecureOSGuard_Installer.exe</span>
+        </div>
+      </div>
+
+      <!-- ===================== HOW TO ADD NEW VERSION =====================
+      
+      Copy this block and paste ABOVE "VERSION 1.0.0" when you release v2.0:
+
+      <div class="version-card latest">
+        <div class="version-header">
+          <div class="version-left">
+            <span class="version-badge latest-badge">🟢 Latest</span>
+            <h2 class="version-num">v2.0.0</h2>
+            <span class="version-date">📅 Month Year</span>
+          </div>
+          <a href="YOUR_NEW_FILE_LINK_HERE" class="btn-primary btn-small" onclick="countDownload()">
+            <svg ...>...</svg>
+            Download
+          </a>
+        </div>
+        <div class="version-title-full">🚀 Title of this release</div>
+        <div class="changelog">
+          <div class="changelog-section">
+            <div class="changelog-label new">✨ New Features</div>
+            <ul>
+              <li>Feature 1</li>
+              <li>Feature 2</li>
+            </ul>
+          </div>
+          <div class="changelog-section">
+            <div class="changelog-label fix">🐛 Bug Fixes</div>
+            <ul>
+              <li>Fix 1</li>
+            </ul>
+          </div>
+        </div>
+        <div class="version-footer">
+          <span>📦 XX MB</span>
+          <span>•</span>
+          <span>🖥️ Windows 10/11</span>
+        </div>
+      </div>
+
+      AND change the old v1.0.0 card's class from "version-card latest" to just "version-card"
+      AND remove its "latest-badge" span
+      ================================================================== -->
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">🛡️ SecureOSGuard</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="versions.html">Versions</a>
+        <a href="about.html">About</a>
+        <a href="https://github.com/leninmaster84-sketch/SecureOsGaurd" target="_blank">GitHub</a>
+      </div>
+      <p class="footer-copy">© 2026 Lenin & Sanjay — Final Year Project. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
