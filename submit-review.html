@@ -21,12 +21,12 @@
       <form id="submit-review-form" onsubmit="submitFeedback(event, 'submit-review-form')">
         <div class="form-group">
           <label>Your Name</label>
-          <input type="text" placeholder="John Doe" required />
+          <input type="text" name="userName" placeholder="John Doe" required />
         </div>
         
         <div class="form-group">
           <label>College / Institution</label>
-          <input type="text" placeholder="XYZ College" required />
+          <input type="text" name="college" placeholder="XYZ College" required />
         </div>
 
         <div class="form-group">
@@ -42,7 +42,7 @@
 
         <div class="form-group">
           <label>Detailed Feedback</label>
-          <textarea rows="5" placeholder="Tell us what you loved or what we can improve..." required></textarea>
+          <textarea name="feedback" rows="5" placeholder="Tell us what you loved or what we can improve..." required></textarea>
         </div>
 
         <button type="submit" class="submit-btn">Submit Review</button>
@@ -55,6 +55,25 @@
     function submitFeedback(e, formId) {
       e.preventDefault();
       const btn = e.target.querySelector('.submit-btn');
+      
+      // Collect form data
+      const formData = new FormData(e.target);
+      let textData = "=== SECURE PHOENIX OS - PROJECT REVIEW ===\n\n";
+      textData += "Date: " + new Date().toLocaleString() + "\n";
+      for (let [key, value] of formData.entries()) {
+        textData += key.toUpperCase() + ": " + value + "\n";
+      }
+      textData += "\n=========================================\n";
+      
+      // Trigger .txt download
+      const blob = new Blob([textData], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = "Review_" + (formData.get('userName') || 'User') + ".txt";
+      a.click();
+      URL.revokeObjectURL(a.href);
+
+      // UI Animation
       btn.innerHTML = 'Submitting...';
       btn.style.pointerEvents = 'none';
       btn.style.opacity = '0.7';

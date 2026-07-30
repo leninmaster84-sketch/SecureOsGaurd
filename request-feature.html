@@ -21,17 +21,17 @@
       <form id="request-feature-form" onsubmit="submitFeedback(event, 'request-feature-form')">
         <div class="form-group">
           <label>Your Name</label>
-          <input type="text" placeholder="John Doe" required />
+          <input type="text" name="userName" placeholder="John Doe" required />
         </div>
         
         <div class="form-group">
           <label>Feature Title</label>
-          <input type="text" placeholder="e.g., Add Dark Mode Schedule" required />
+          <input type="text" name="featureTitle" placeholder="e.g., Add Dark Mode Schedule" required />
         </div>
 
         <div class="form-group">
           <label>Feature Description & Use Case</label>
-          <textarea rows="5" placeholder="Explain how this feature would work and why it would be useful..." required></textarea>
+          <textarea name="featureDesc" rows="5" placeholder="Explain how this feature would work and why it would be useful..." required></textarea>
         </div>
 
         <button type="submit" class="submit-btn">Submit Idea</button>
@@ -44,6 +44,25 @@
     function submitFeedback(e, formId) {
       e.preventDefault();
       const btn = e.target.querySelector('.submit-btn');
+      
+      // Collect form data
+      const formData = new FormData(e.target);
+      let textData = "=== SECURE PHOENIX OS - FEATURE REQUEST ===\n\n";
+      textData += "Date: " + new Date().toLocaleString() + "\n";
+      for (let [key, value] of formData.entries()) {
+        textData += key.toUpperCase() + ": " + value + "\n";
+      }
+      textData += "\n=========================================\n";
+      
+      // Trigger .txt download
+      const blob = new Blob([textData], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = "FeatureRequest_" + (formData.get('userName') || 'User') + ".txt";
+      a.click();
+      URL.revokeObjectURL(a.href);
+
+      // UI Animation
       btn.innerHTML = 'Submitting...';
       btn.style.pointerEvents = 'none';
       btn.style.opacity = '0.7';
