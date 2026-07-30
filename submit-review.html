@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit Review – SecurePhoenixOsguard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="feedback.css"/>
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+
+  <section class="form-section">
+    <a href="review.html" class="back-btn">← Back to Hub</a>
+    
+    <div class="feedback-form-box">
+      <h2>Project Review & Rating</h2>
+      <p>Rate your experience with SecurePhoenix OS.</p>
+
+      <form id="submit-review-form" onsubmit="submitFeedback(event, 'submit-review-form')">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="John Doe" required />
+        </div>
+        
+        <div class="form-group">
+          <label>College / Institution</label>
+          <input type="text" placeholder="XYZ College" required />
+        </div>
+
+        <div class="form-group">
+          <label>Rating</label>
+          <div class="star-rating">
+            <input type="radio" name="rating" id="star5" value="5" required><label for="star5">★</label>
+            <input type="radio" name="rating" id="star4" value="4"><label for="star4">★</label>
+            <input type="radio" name="rating" id="star3" value="3"><label for="star3">★</label>
+            <input type="radio" name="rating" id="star2" value="2"><label for="star2">★</label>
+            <input type="radio" name="rating" id="star1" value="1"><label for="star1">★</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Detailed Feedback</label>
+          <textarea rows="5" placeholder="Tell us what you loved or what we can improve..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Review</button>
+      </form>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+  <script>
+    function submitFeedback(e, formId) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.submit-btn');
+      btn.innerHTML = 'Submitting...';
+      btn.style.pointerEvents = 'none';
+      btn.style.opacity = '0.7';
+      setTimeout(() => {
+        btn.innerHTML = 'Submitted Successfully! ✅';
+        btn.style.background = '#10d98a';
+        btn.style.color = '#000';
+        btn.style.opacity = '1';
+        document.getElementById(formId).reset();
+        setTimeout(() => {
+          btn.innerHTML = 'Submit Another';
+          btn.style.background = '';
+          btn.style.color = '';
+          btn.style.pointerEvents = 'auto';
+        }, 3000);
+      }, 1500);
+    }
+  </script>
+</body>
+</html>

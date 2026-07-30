@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Report Bug – SecurePhoenixOsguard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="feedback.css"/>
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+
+  <section class="form-section">
+    <a href="review.html" class="back-btn">← Back to Hub</a>
+    
+    <div class="feedback-form-box">
+      <h2>Report a Bug</h2>
+      <p>Help us squash glitches. Please be as detailed as possible.</p>
+
+      <form id="report-bug-form" onsubmit="submitFeedback(event, 'report-bug-form')">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="John Doe" required />
+        </div>
+        
+        <div class="form-group">
+          <label>Operating System</label>
+          <select required>
+            <option value="" disabled selected>Select OS...</option>
+            <option value="win10">Windows 10</option>
+            <option value="win11">Windows 11</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Bug Title</label>
+          <input type="text" placeholder="e.g., App crashes on startup" required />
+        </div>
+
+        <div class="form-group">
+          <label>Steps to Reproduce</label>
+          <textarea rows="4" placeholder="1. Open app... 2. Click button... 3. Crash happens..." required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>Expected Result</label>
+          <textarea rows="2" placeholder="What should have happened?" required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Bug Report</button>
+      </form>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+  <script>
+    function submitFeedback(e, formId) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.submit-btn');
+      btn.innerHTML = 'Submitting...';
+      btn.style.pointerEvents = 'none';
+      btn.style.opacity = '0.7';
+      setTimeout(() => {
+        btn.innerHTML = 'Submitted Successfully! ✅';
+        btn.style.background = '#10d98a';
+        btn.style.color = '#000';
+        btn.style.opacity = '1';
+        document.getElementById(formId).reset();
+        setTimeout(() => {
+          btn.innerHTML = 'Submit Another';
+          btn.style.background = '';
+          btn.style.color = '';
+          btn.style.pointerEvents = 'auto';
+        }, 3000);
+      }, 1500);
+    }
+  </script>
+</body>
+</html>

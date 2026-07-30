@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Request Feature – SecurePhoenixOsguard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="feedback.css"/>
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+
+  <section class="form-section">
+    <a href="review.html" class="back-btn">← Back to Hub</a>
+    
+    <div class="feedback-form-box">
+      <h2>Request a Feature</h2>
+      <p>Have a great idea? Tell us what you want to see in the next update!</p>
+
+      <form id="request-feature-form" onsubmit="submitFeedback(event, 'request-feature-form')">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="John Doe" required />
+        </div>
+        
+        <div class="form-group">
+          <label>Feature Title</label>
+          <input type="text" placeholder="e.g., Add Dark Mode Schedule" required />
+        </div>
+
+        <div class="form-group">
+          <label>Feature Description & Use Case</label>
+          <textarea rows="5" placeholder="Explain how this feature would work and why it would be useful..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Idea</button>
+      </form>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+  <script>
+    function submitFeedback(e, formId) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.submit-btn');
+      btn.innerHTML = 'Submitting...';
+      btn.style.pointerEvents = 'none';
+      btn.style.opacity = '0.7';
+      setTimeout(() => {
+        btn.innerHTML = 'Submitted Successfully! ✅';
+        btn.style.background = '#10d98a';
+        btn.style.color = '#000';
+        btn.style.opacity = '1';
+        document.getElementById(formId).reset();
+        setTimeout(() => {
+          btn.innerHTML = 'Submit Another';
+          btn.style.background = '';
+          btn.style.color = '';
+          btn.style.pointerEvents = 'auto';
+        }, 3000);
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
